@@ -55,3 +55,26 @@ class PotatoGarden:     #Класс описывающий грядку.
         for potato in self.potatoes:
             result += "".join(potato.status()) + "\n"
         return  result
+
+class Gardener:     #Класс описывающий садовника.
+    def __init__(self, name, garden):
+        self.grow_potatoes = []
+        self.name = name
+        self.garden = garden
+
+    def work(self):     #Метод ухаживания за грядкой.
+        for _ in self.garden.potatoes:
+            return self.garden.grow_all()
+
+    def harvest(self):  #Метод сбора картошки.
+        for potato in self.garden.potatoes:
+            if potato.growth_stage == 3:
+                self.grow_potatoes.append(potato)
+                print(f"Картошка {potato.potato_id} собрана. ")
+            else:
+                print(f"Картошка {potato.potato_id}, еще не созрела.")
+
+garden1 = PotatoGarden(5)
+gardener1 = Gardener('Василий', garden1)
+
+gardener1.harvest()
